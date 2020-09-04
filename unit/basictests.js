@@ -16,7 +16,7 @@ describe('zipint', function() {
   };
 
   it('Testing simple encodeion', function() {
-    var array = [10,100000,65999,10,10,0,1,1,2000, 0xFFFFFFFF];
+    var array = [10,100000,65999,10,10,0,1,1,2000, 0xFFFFFFFF, 0xFFFFFFFF-1];
     var buf = zipint.encode(array);
     if(! zipint.computeHowManyIntegers(buf) == array.length) throw "bad count";
     var back = zipint.decode(buf);
