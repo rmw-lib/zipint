@@ -1,28 +1,28 @@
 {
-  "name": "fastintcompression",
-  "description": "a fast integer compression library in JavaScript",
+  "name": "@rmw/zipint",
+  "description": "a fast integer encodeion library in JavaScript",
   "keywords": [
     "integers",
-    "compression",
+    "encodeion",
     "performance"
   ],
   "version": "0.0.3",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lemire/FastIntegerCompression.js.git"
+    "url": "git+https://github.com/rmw-lib/zipint.git"
   },
-  "main": "FastIntegerCompression.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "mocha unit/basictests.js"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/lemire/FastIntegerCompression.js/issues"
+    "url": "https://github.com/rmw-lib/zipint/issues"
   },
-  "homepage": "https://github.com/lemire/FastIntegerCompression.js#readme",
+  "homepage": "https://github.com/rmw-lib/zipint#readme",
   "devDependencies": {
-    "benchmark": "~1.0.0",
-    "mocha": "^2.5.3"
+    "benchmark": "~2.1.4",
+    "mocha": "^8.1.3"
   },
-  "author": "Daniel Lemire <lemire@gmail.com> (http://lemire.me/en/)"
+  "type":"module"
 }

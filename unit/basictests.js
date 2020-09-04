@@ -1,9 +1,10 @@
 /* This script expects node.js  and mocha */
 
-'use strict';
 
-describe('FastIntegerCompression', function() {
-  var FastIntegerCompression = require('../FastIntegerCompression.js');
+import * as zipint from "../index.mjs";
+
+describe('zipint', function() {
+
 
   function arraysEquals(a, b) {
     var i = a.length;
@@ -14,22 +15,22 @@ describe('FastIntegerCompression', function() {
     return true;
   };
 
-  it('Testing simple compression', function() {
-    var array = [10,100000,65999,10,10,0,1,1,2000];
-    var buf = FastIntegerCompression.compress(array);
-    if(! FastIntegerCompression.computeHowManyIntegers(buf) == array.length) throw "bad count";
-    var back = FastIntegerCompression.uncompress(buf);
+  it('Testing simple encodeion', function() {
+    var array = [10,100000,65999,10,10,0,1,1,2000, 0xFFFFFFFF];
+    var buf = zipint.encode(array);
+    if(! zipint.computeHowManyIntegers(buf) == array.length) throw "bad count";
+    var back = zipint.decode(buf);
+    console.log(back)
     if(!arraysEquals(array,back)) throw "bad";
-
   });
 
 
 
-  it('Testing simple compression (signed)', function() {
+  it('Testing simple encodeion (signed)', function() {
     var array = [10,100000,65999,10,10,0,-1,-1,-2000];
-    var buf = FastIntegerCompression.compressSigned(array);
-    if(! FastIntegerCompression.computeHowManyIntegers(buf) == array.length) throw "bad count";
-    var back = FastIntegerCompression.uncompressSigned(buf);
+    var buf = zipint.encodeSigned(array);
+    if(! zipint.computeHowManyIntegers(buf) == array.length) throw "bad count";
+    var back = zipint.decodeSigned(buf);
     if(!arraysEquals(array,back)) throw "bad";
 
   });

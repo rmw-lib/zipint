@@ -13,13 +13,13 @@ function BasicBench() {
     for (var i = 0, t = 40; i < howmany; i++) {
         array.push(Math.round(Math.random() * t))
     }
-    var buf = FastIntegerCompression.compress(array);
-    FastIntegerCompression.uncompress(buf);
-    console.log('input size: '+sizeof.format(sizeof.sizeof(array))+' compressed size: '+sizeof.format(buf.byteLength));
+    var buf = FastIntegerCompression.encode(array);
+    FastIntegerCompression.decode(buf);
+    console.log('input size: '+sizeof.format(sizeof.sizeof(array))+' encodeed size: '+sizeof.format(buf.byteLength));
 
     var suite = new Benchmark.Suite();
-    var ms = suite.add('FastIntegerCompression.compress', function() {
-        return FastIntegerCompression.compress(array);
+    var ms = suite.add('FastIntegerCompression.encode', function() {
+        return FastIntegerCompression.encode(array);
     })
     // add listeners
     .on('cycle', function(event) {
@@ -33,8 +33,8 @@ function BasicBench() {
 'async': false
     });
     suite = new Benchmark.Suite();
-    var ms = suite.add('FastIntegerCompression.uncompress', function() {
-        return FastIntegerCompression.uncompress(buf);
+    var ms = suite.add('FastIntegerCompression.decode', function() {
+        return FastIntegerCompression.decode(buf);
     })
     // add listeners
     .on('cycle', function(event) {
