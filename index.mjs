@@ -120,36 +120,34 @@ export const decode = (input) => {
   var end = inbyte.length;
   var pos = 0;
   while (end > pos) {
-    var c = inbyte[pos++];
-    var v = c & 0x7F;
-    if (c >= 0) {
-      array.push(v)
-      continue;
-    }
-    c = inbyte[pos++];
-    v |= (c & 0x7F) << 7;
-    if (c >= 0) {
-      array.push(v)
-      continue;
-    }
-    c = inbyte[pos++];
-    v |= (c & 0x7F) << 14;
-    if (c >= 0) {
-      array.push(v)
-      continue;
-    }
-    c = inbyte[pos++];
-    v |= (c & 0x7F) << 21;
-    if (c >= 0) {
-      array.push(v)
-      continue;
-    }
-    c = inbyte[pos++];
-    v |= c << 28;
-    if (v < 0) {
-      v += 0x100000000 ;
-    }
-    array.push(v)
+        var c = inbyte[pos++];
+        var v = c & 0x7F;
+        if (c >= 0) {
+          array.push(v)
+          continue;
+        }
+        c = inbyte[pos++];
+        v |= (c & 0x7F) << 7;
+        if (c >= 0) {
+          array.push(v)
+          continue;
+        }
+        c = inbyte[pos++];
+        v |= (c & 0x7F) << 14;
+        if (c >= 0) {
+          array.push(v)
+          continue;
+        }
+        c = inbyte[pos++];
+        v |= (c & 0x7F) << 21;
+        if (c >= 0) {
+          array.push(v)
+          continue;
+        }
+        c = inbyte[pos++];
+        v |= c << 28;
+        v >>>= 0; // make positive
+        array.push(v)
   }
   return array;
 };
